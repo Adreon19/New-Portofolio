@@ -1,0 +1,58 @@
+---
+import Self from "../components/self.astro"
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="author" content="Sachio Ramzy" />
+    <title>Sachio's Portfolio</title>
+  </head>
+  <body class="bg-black">
+    <div class="container mx-auto p-10 bg-gradient-to-r from-gray-950 to-black w-full">
+      <div class="flex flex-col items-center md:flex-row md:justify-between space-y-6 md:space-y-0">
+        <h1 id="typing-text" class="text-white text-center md:text-left text-4xl font-bold md:max-w-lg leading-snug">
+          <!-- Empty initially, the JavaScript will handle text insertion -->
+        </h1>
+        <img src="/kebab.jpg" alt="A kebab image" class="rounded-lg shadow-lg shadow-blue-600/70 md:w-1/3 w-full">
+      </div>
+    </div>
+    <Self />
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const text = "Welcome to the newer version of my portfolio. I've learned a lot recently!";
+        let index = 0;
+        let isDeleting = false;
+        const speed = 45; 
+        const delayBetweenLoops = 1000;
+        const h1Element = document.getElementById('typing-text');
+
+        function typeWriter() {
+          const cursor = "|";
+          let currentText = text.slice(0, index);
+
+          h1Element.innerHTML = currentText + cursor;
+
+          if (!isDeleting && index < text.length) {
+            index++;
+            setTimeout(typeWriter, speed);
+          } else if (isDeleting && index > 0) {
+            index--;
+            setTimeout(typeWriter, speed);
+          } else if (!isDeleting && index === text.length) {
+            isDeleting = true;
+            setTimeout(typeWriter, delayBetweenLoops);
+          } else if (isDeleting && index === 0) {
+            isDeleting = false;
+            setTimeout(typeWriter, speed);
+          }
+        }
+
+        typeWriter();
+      });
+    </script>
+  </body>
+</html>
