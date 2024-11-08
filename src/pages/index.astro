@@ -1,23 +1,14 @@
 ---
+import BaseLayout from "../Layouts/BaseLayout.astro"
 import Home from "../components/home.astro"
 import Self from "../components/self.astro"
 import Skills from "../components/skills.astro"
-import Projects from "../components/projects.astro"
+import Blog from "./blog.astro"
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/chaldea.png" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="author" content="Sachio Ramzy" />
-    <title>Sachio's Portfolio</title>
-  </head>
-  <body class="bg-black">
-    <Home />
-    <Self />
-    <Skills />
-    <Projects />
-  </body>
-</html>
+<BaseLayout title="Home">
+  <Home />
+  <Self />
+  <Skills />
+  <Blog />
+</BaseLayout>

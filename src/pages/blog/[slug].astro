@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../Layouts/BaseLayout.astro';
+import fs from 'fs';
+import matter from 'gray-matter';
+import { Icon } from 'astro-icon/components';
+
+export async function getStaticPaths() {
+  const files = fs.readdirSync('./content/posts');
+  const paths = files.map(fileName => {
+    const slug = fileName.replace('.md', '');
+    return { params: { slug } };
+  });
+  return paths;
+}
+
+const { slug } = Astro.params;
+const fileContent = fs.readFileSync(`./content/posts/${slug}.md`, 'utf-8');
+const { data, content } = matter(fileContent);
+
+interface Post {
+  slug: string;
+  title: string;
+  hero: string;
+  date: string;
+  pubDate: string;
+  image?: string;
+}
+
+const post: Post = {
+  slug,
+  title: data.title || '',
+  hero: data.hero || '',
+  date: data.date || '',
+  pubDate: data.pubDate || '',
+  image: data.image || '/default-image.jpg'
+};
+---
+<BaseLayout title={post.title}>
+    <article class="m-5">
+        <a href="/" class="flex items-center justify-center p-3 hover:bg-gray-800 rounded-full shadow-lg transition-all duration-250 ease-in-out max-w-fit">
+            <Icon name="mdi:arrow-left" class="text-white text-xl hover:text-gray-300 transition-all duration-300" />
+            <span class="ml-2 text-white font-semibold text-lg">Back</span>
+        </a>        
+        <div class="container m-2 flex justify-center items-center flex-col">
+            <h1 class="font-bold text-4xl">{post.title}</h1>
+            <img src={post.image} alt={post.title} class="w-max h-60 m-6 border rounded-xl p-1" />
+            <p>Author: Sachio Ramzy Zahran</p>
+            <p class="font-thin p-1">{new Date(post.date).toLocaleDateString()}</p>
+            <div>{content}</div>
+        </div>
+    </article>
+</BaseLayout>
