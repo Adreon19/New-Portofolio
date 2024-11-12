@@ -1,5 +1,8 @@
 ---
 const { title } = Astro.props;
+import Nav from "../components/Layouts/nav.astro";
+import Footer from "../components/Layouts/footer.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <html lang="en">
@@ -7,9 +10,43 @@ const { title } = Astro.props;
     <title>{title} | Sachio's Portofolio</title>
     <link rel="icon" href="chaldea.png" type="image/png" />
   </head>
-  <body class="bg-black text-white"> 
+  <body class="bg-gray-950 text-white m-0"> 
+    <Nav />
     <main>
       <slot />
     </main>
+    <button id="scrollToTopBtn" class="fixed bottom-4 right-4 p-3 bg-gray-800 hover:text-black hover:bg-transparent text-white rounded-full shadow-lg hidden">
+      <Icon name="mdi:arrow-up" class="text-white text-xl transition-all duration-300" />
+    </button>
+    <footer>
+      <Footer />
+    </footer>
   </body>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    </style>
+  <script>
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    
+    window.onscroll = function() {
+      const distanceFromTop = window.scrollY;
+      
+      const homeSection = document.getElementById('home');
+      if (distanceFromTop > homeSection.offsetTop + homeSection.clientHeight) {
+        scrollToTopBtn.classList.remove('hidden');
+      } else {
+        scrollToTopBtn.classList.add('hidden');
+      }
+    };
+  
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+  
 </html>
