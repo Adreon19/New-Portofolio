@@ -1,0 +1,30 @@
+<section>
+    <div class="container mx-auto mt-10 p-6 rounded-lg shadow-lg text-white">
+      <div class="text-center sm:text-left">
+        <h1 class="text-5xl relative inline-block underline decoration-slate-700 underline-offset-8">Contact Me!</h1>
+      </div>
+      <p class="text-lg md:text-xl font-light text-center md:text-left indent-2 m-2">
+        If you want to contact me, feel free to send me an email here!
+      </p>
+      <form action="https://formspree.io/f/xldennla" method="POST" class="grid grid-cols-1 sm:grid-cols-2 gap-6 m-2">
+        <div class="col-span-1">
+          <label for="username" class="block text-lg font-medium">Name</label>
+          <input type="text" id="username" name="username" required class="w-full p-3 rounded-lg text-white bg-gray-700" placeholder="Your Name">
+        </div>
+        <div class="col-span-1">
+          <label for="email" class="block text-lg font-medium">Email</label>
+          <input type="email" id="email" name="email" required class="w-full p-3 rounded-lg text-white bg-gray-700" placeholder="YourName@gmail.com">
+        </div>
+        <div class="col-span-2">
+          <label for="message" class="block text-lg font-medium">Message</label>
+          <textarea id="message" name="message" required class="w-full p-3 rounded-lg text-white bg-gray-700" rows="2" placeholder="Your Message"></textarea>
+        </div>
+        <div class="col-span-2 text-center sm:text-left">
+          <button type="submit" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-semibold">
+            Send Message
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+  
