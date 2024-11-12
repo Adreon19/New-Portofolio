@@ -1,14 +1,38 @@
 ---
 import BaseLayout from "../Layouts/BaseLayout.astro"
-import Home from "../components/home.astro"
-import Self from "../components/self.astro"
-import Skills from "../components/skills.astro"
+import Home from "../components/Sections/home.astro"
+import Self from "../components/Sections/self.astro"
+import Skills from "../components/Sections/skills.astro"
 import Blog from "./blog.astro"
+import Contact from "../components/Sections/Contact.astro"
 ---
 
 <BaseLayout title="Home">
-  <Home />
-  <Self />
-  <Skills />
-  <Blog />
+  <section id="home"><Home /></section>
+  <section id="profile"><Self /></section>
+  <section id="skills"><Skills /></section>
+  <section id="blog"><Blog /></section>
+  <section id="contact"> <Contact /></section>
 </BaseLayout>
+<script>
+  const links = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section');
+
+  window.addEventListener('scroll', () => {
+    let currentSection = '';
+
+    sections.forEach(section => {
+      const sectionRect = section.getBoundingClientRect();
+      if (sectionRect.top <= 0 && sectionRect.bottom >= 0) {
+        currentSection = section.getAttribute('id');
+      }
+    });
+
+    links.forEach(link => {
+      link.classList.remove('bg-gray-900');
+      if (link.getAttribute('href') === `#${currentSection}`) {
+        link.classList.add('bg-gray-900');
+      }
+    });
+  });
+</script>
