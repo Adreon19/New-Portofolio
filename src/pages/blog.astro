@@ -19,24 +19,26 @@ const posts: Post[] = fs.readdirSync('./content/posts')
   });
 ---
 
-  <section>
-    <div class="container mx-auto mt-10 p-6 text-white">
-      <div class="class text-center sm:text-left">
-        <h1 class="text-5xl relative inline-block underline decoration-slate-700 underline-offset-8">Blog</h1>
-      </div>
-      <p class="text-lg md:text-xl font-light text-center md:text-left leading-relaxed indent-2 m-2">
-        I'll keep updating things I've been working on here
-      </p>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 items-center m-2">
-        {posts.map(post => (
-          <a href={`/blog/${post.slug}`} class="card block max-w-xs mx-auto text-center bg-neutral-950 rounded-xl font-bold shadow-md transform transition-transform duration-300 hover:scale-110">
-            <img src={post.image || '/default-image.jpg'} alt={post.title} 
-                 class="rounded-tl-xl rounded-tr-xl object-cover w-full h-48" />
-            <h3>{post.title}</h3>
-            <p class="font-thin">{post.hero}</p>
-            <p class="text-xs font-light p-2 text-right">{new Date(post.date).toLocaleDateString()}</p>
-          </a>
-        ))}
-      </div>
+<section>
+  <div class="container mx-auto mt-10 p-6 text-white">
+    <div class="class text-center sm:text-left">
+      <h1 class="text-5xl relative inline-block underline decoration-slate-700 underline-offset-8">Blog</h1>
     </div>
-  </section>
+    <p class="text-lg md:text-xl font-light text-center md:text-left leading-relaxed indent-2 m-2">
+      I'll keep updating things I've been working on here
+    </p>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 items-start m-2">
+      {posts.map(post => (
+        <a href={`/blog/${post.slug}`} class="card block w-full h-full text-center bg-neutral-950 rounded-xl font-bold shadow-md transform transition-transform duration-300 hover:scale-110">
+          <img src={post.image || '/default-image.jpg'} alt={post.title} 
+               class="rounded-tl-xl rounded-tr-xl object-cover w-full h-36" />
+          <div class="p-3">
+            <h3 class="text-base">{post.title}</h3>
+            <p class="font-thin text-xs">{post.hero}</p>
+            <p class="text-xs font-light p-2 text-right">{new Date(post.date).toLocaleDateString()}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

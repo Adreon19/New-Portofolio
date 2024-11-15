@@ -37,17 +37,19 @@ const post: Post = {
 ---
 
 <BaseLayout title={post.title}>
-    <article class="flex flex-col min-h-screen m-5">
-        <a href="/" class="flex items-center justify-center p-3 hover:bg-gray-800 rounded-full shadow-lg transition-all duration-250 ease-in-out max-w-fit">
-            <Icon name="mdi:arrow-left" class="text-white text-xl hover:text-gray-300 transition-all duration-300" />
-            <span class="ml-2 text-white font-semibold text-lg">Back</span>
-        </a>        
-        <div class="container m-2 flex justify-center items-center flex-col flex-grow">
-            <h1 class="font-bold text-4xl">{post.title}</h1>
-            <img src={post.image} alt={post.title} class="w-max h-60 m-6 border rounded-xl p-1" />
-            <p class="font-thin p-1">{new Date(post.date).toLocaleDateString()}</p>
-            <div>{content}</div>
-        </div>
-        <p>See my full projects here: <a href="https://github.com/Adreon19/" class=" text-blue-500 hover:underline">https://github.com/Adreon19/</a></p>
+  <article class="flex flex-col min-h-screen m-5">
+    <a href="/" class="flex items-center justify-center p-3 hover:bg-gray-800 rounded-full shadow-lg transition-all duration-250 ease-in-out max-w-fit">
+      <Icon name="mdi:arrow-left" class="text-white text-xl hover:text-gray-300 transition-all duration-300" />
+      <span class="ml-2 text-white font-semibold text-lg">Back</span>
+    </a>        
+    <div class="text-center ">
+      <h1 class="font-bold text-2xl sm:text-4xl">{post.title}</h1>
+    </div>
+    <div class="container m-2 flex justify-center items-center flex-col">
+      <img src={post.image} alt={post.title} class="w-max h-60 m-6 border rounded-xl p-1" />
+      <p class="font-thin p-1">{new Date(post.date).toLocaleDateString()}</p>
+      <div>{content}</div>
+    </div>
+        <p>See my full projects here: <a href="https://github.com/Adreon19/" class=" text-blue-500 hover:underline md:break-words">https://github.com/Adreon19/</a></p>
     </article>
 </BaseLayout>
