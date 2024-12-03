@@ -15,7 +15,6 @@ import Contact from "../components/Sections/Contact.astro"
   <section id="contact"> <Contact /></section>
 </BaseLayout>
 <script>
-  const links = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section');
 
   window.addEventListener('scroll', () => {
@@ -25,13 +24,6 @@ import Contact from "../components/Sections/Contact.astro"
       const sectionRect = section.getBoundingClientRect();
       if (sectionRect.top <= 0 && sectionRect.bottom >= 0) {
         currentSection = section.getAttribute('id');
-      }
-    });
-
-    links.forEach(link => {
-      link.classList.remove('bg-gray-900');
-      if (link.getAttribute('href') === `#${currentSection}`) {
-        link.classList.add('bg-gray-900');
       }
     });
   });
